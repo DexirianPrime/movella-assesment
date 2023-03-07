@@ -33,6 +33,16 @@ Expose minikube's api via  `kubectl proxy --port=8080`
 Use kubectl log command to gather logs from pod, for each line check if line contains error, if yes output to logfile, wait 5min and repeat.
 
 
+Service exposure explanation :
+
+The service is exposed using k8s' ingress plugin (installed via `minikube addons enable ingress`)
+
+The rules for ingress are defined within rules.yaml, which specifies to redirect traffic from localhost:8080 to our nginx service
+
+The service itself specifies to redirect traffic from 8080 to our container's 80 port, where the web server is running.
+
+
+
 
 
 
