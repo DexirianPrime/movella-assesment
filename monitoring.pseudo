@@ -1,0 +1,14 @@
+while [ true ]; do
+    for pod in $(curl http://localhost:8080/api/v1/pods); do
+        log=$(kubectl logs $pod)
+        cat $log | while read line; do
+            if [[ "$line" == *"ERROR"* ]]; then
+                echo $line >> error.log
+            fi
+        done
+    done
+    sleep 5m
+done
+
+
+
